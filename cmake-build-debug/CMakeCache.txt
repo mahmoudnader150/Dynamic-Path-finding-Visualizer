@@ -224,6 +224,18 @@ Dynamic_Path_finding_Visualizer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Dynamic_Path_finding_Visualizer_SOURCE_DIR:STATIC=/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer
 
+//Value Computed by CMake
+SFMLGrid_BINARY_DIR:STATIC=/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer/cmake-build-debug
+
+//Value Computed by CMake
+SFMLGrid_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SFMLGrid_SOURCE_DIR:STATIC=/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer
+
+//The directory containing a CMake configuration file for SFML.
+SFML_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SFML
+
 
 ########################
 # INTERNAL cache entries

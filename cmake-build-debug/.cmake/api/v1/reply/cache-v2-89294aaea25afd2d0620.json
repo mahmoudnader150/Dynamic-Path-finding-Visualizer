@@ -1178,6 +1178,54 @@
 			"value" : "/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer"
 		},
 		{
+			"name" : "SFMLGrid_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer/cmake-build-debug"
+		},
+		{
+			"name" : "SFMLGrid_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "SFMLGrid_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/mahmoud/ME/projects/Dynamic Pathfinding Visualizer/Dynamic-Path-finding-Visualizer"
+		},
+		{
+			"name" : "SFML_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for SFML."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/SFML"
+		},
+		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
 			"properties" : 
 			[
