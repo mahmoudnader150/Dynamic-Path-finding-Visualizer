@@ -51,7 +51,25 @@ build cmake_object_order_depends_target_Dynamic_Path_finding_Visualizer: phony |
 
 build CMakeFiles/Dynamic_Path_finding_Visualizer.dir/main.cpp.o: CXX_COMPILER__Dynamic_Path_finding_Visualizer_unscanned_Debug /home/mahmoud/ME/projects/Dynamic$ Pathfinding$ Visualizer/Dynamic-Path-finding-Visualizer/main.cpp || cmake_object_order_depends_target_Dynamic_Path_finding_Visualizer
   DEP_FILE = CMakeFiles/Dynamic_Path_finding_Visualizer.dir/main.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+  OBJECT_FILE_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+
+build CMakeFiles/Dynamic_Path_finding_Visualizer.dir/Algorithms.cpp.o: CXX_COMPILER__Dynamic_Path_finding_Visualizer_unscanned_Debug /home/mahmoud/ME/projects/Dynamic$ Pathfinding$ Visualizer/Dynamic-Path-finding-Visualizer/Algorithms.cpp || cmake_object_order_depends_target_Dynamic_Path_finding_Visualizer
+  DEP_FILE = CMakeFiles/Dynamic_Path_finding_Visualizer.dir/Algorithms.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+  OBJECT_FILE_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+
+build CMakeFiles/Dynamic_Path_finding_Visualizer.dir/PathfindingVisualizer.cpp.o: CXX_COMPILER__Dynamic_Path_finding_Visualizer_unscanned_Debug /home/mahmoud/ME/projects/Dynamic$ Pathfinding$ Visualizer/Dynamic-Path-finding-Visualizer/PathfindingVisualizer.cpp || cmake_object_order_depends_target_Dynamic_Path_finding_Visualizer
+  DEP_FILE = CMakeFiles/Dynamic_Path_finding_Visualizer.dir/PathfindingVisualizer.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+  OBJECT_FILE_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
+
+build CMakeFiles/Dynamic_Path_finding_Visualizer.dir/UIComponents.cpp.o: CXX_COMPILER__Dynamic_Path_finding_Visualizer_unscanned_Debug /home/mahmoud/ME/projects/Dynamic$ Pathfinding$ Visualizer/Dynamic-Path-finding-Visualizer/UIComponents.cpp || cmake_object_order_depends_target_Dynamic_Path_finding_Visualizer
+  DEP_FILE = CMakeFiles/Dynamic_Path_finding_Visualizer.dir/UIComponents.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
   OBJECT_FILE_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
 
@@ -63,7 +81,7 @@ build CMakeFiles/Dynamic_Path_finding_Visualizer.dir/main.cpp.o: CXX_COMPILER__D
 #############################################
 # Link the executable Dynamic_Path_finding_Visualizer
 
-build Dynamic_Path_finding_Visualizer: CXX_EXECUTABLE_LINKER__Dynamic_Path_finding_Visualizer_Debug CMakeFiles/Dynamic_Path_finding_Visualizer.dir/main.cpp.o | /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
+build Dynamic_Path_finding_Visualizer: CXX_EXECUTABLE_LINKER__Dynamic_Path_finding_Visualizer_Debug CMakeFiles/Dynamic_Path_finding_Visualizer.dir/main.cpp.o CMakeFiles/Dynamic_Path_finding_Visualizer.dir/Algorithms.cpp.o CMakeFiles/Dynamic_Path_finding_Visualizer.dir/PathfindingVisualizer.cpp.o CMakeFiles/Dynamic_Path_finding_Visualizer.dir/UIComponents.cpp.o | /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
   OBJECT_DIR = CMakeFiles/Dynamic_Path_finding_Visualizer.dir
