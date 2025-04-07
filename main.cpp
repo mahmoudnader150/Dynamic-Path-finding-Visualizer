@@ -2,18 +2,18 @@
 #include <iostream>
 #include <queue>
 #include <vector>
-#include <stack>
 #include <chrono>
 #include <climits>
 #include <string>
 #include <algorithm>
-#include <functional> // Added for std::function
+#include <functional>
+#include <stack>
 
 // Constants
 const int ROWS = 16;
 const int COLS = 16;
 const int TILE_SIZE = 32;
-const int TOP_BAR_HEIGHT = 40;
+const int TOP_BAR_HEIGHT = 60; // Increased from 40 to 60
 const int WINDOW_WIDTH = COLS * TILE_SIZE;
 const int WINDOW_HEIGHT = ROWS * TILE_SIZE + TOP_BAR_HEIGHT;
 
@@ -70,50 +70,56 @@ private:
     }
 
     void setupUI() {
-        // Status text
+        // Status text - moved to bottom left of window
         stageText.setFont(font);
-        stageText.setCharacterSize(16);
+        stageText.setCharacterSize(18);
         stageText.setFillColor(sf::Color::Black);
-        stageText.setPosition(10, 5);
+        stageText.setPosition(10, WINDOW_HEIGHT - 30); // Bottom left
 
-        // Time text
+        // Time text - moved to bottom right of window
         timeText.setFont(font);
-        timeText.setCharacterSize(14);
+        timeText.setCharacterSize(16);
         timeText.setFillColor(sf::Color::Black);
-        timeText.setPosition(10, 22);
+        timeText.setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 30); // Bottom right
 
         // Find Path button
-        findPathButton.setSize(sf::Vector2f(120, 30));
+        findPathButton.setSize(sf::Vector2f(130, 40));
         findPathButton.setFillColor(sf::Color::Green);
-        findPathButton.setPosition(WINDOW_WIDTH - 250, 5);
+        findPathButton.setPosition(10, 10); // Top left
+        findPathButton.setOutlineThickness(2);
+        findPathButton.setOutlineColor(sf::Color(0, 100, 0));
 
         findPathButtonText.setFont(font);
         findPathButtonText.setString("Find Path");
-        findPathButtonText.setCharacterSize(14);
+        findPathButtonText.setCharacterSize(16);
         findPathButtonText.setFillColor(sf::Color::White);
-        findPathButtonText.setPosition(WINDOW_WIDTH - 232, 12);
+        findPathButtonText.setPosition(30, 20); // Centered in button
 
-        // Reset button
-        resetButton.setSize(sf::Vector2f(100, 30));
+        // Reset button - moved to top middle
+        resetButton.setSize(sf::Vector2f(110, 40));
         resetButton.setFillColor(sf::Color::Red);
-        resetButton.setPosition(WINDOW_WIDTH - 120, 5);
+        resetButton.setPosition(WINDOW_WIDTH / 2 - 55, 10); // Top middle
+        resetButton.setOutlineThickness(2);
+        resetButton.setOutlineColor(sf::Color(139, 0, 0));
 
         resetButtonText.setFont(font);
         resetButtonText.setString("Reset");
-        resetButtonText.setCharacterSize(14);
+        resetButtonText.setCharacterSize(16);
         resetButtonText.setFillColor(sf::Color::White);
-        resetButtonText.setPosition(WINDOW_WIDTH - 95, 12);
+        resetButtonText.setPosition(WINDOW_WIDTH / 2 - 30, 20); // Centered in button
 
-        // Algorithm selection button
-        algorithmButton.setSize(sf::Vector2f(120, 30));
+        // Algorithm selection button - moved to top right
+        algorithmButton.setSize(sf::Vector2f(150, 40));
         algorithmButton.setFillColor(sf::Color::Blue);
-        algorithmButton.setPosition(WINDOW_WIDTH - 390, 5);
+        algorithmButton.setPosition(WINDOW_WIDTH - 160, 10); // Top right
+        algorithmButton.setOutlineThickness(2);
+        algorithmButton.setOutlineColor(sf::Color(0, 0, 139));
 
         algorithmButtonText.setFont(font);
         algorithmButtonText.setString("Algorithm: DFS");
-        algorithmButtonText.setCharacterSize(14);
+        algorithmButtonText.setCharacterSize(16);
         algorithmButtonText.setFillColor(sf::Color::White);
-        algorithmButtonText.setPosition(WINDOW_WIDTH - 380, 12);
+        algorithmButtonText.setPosition(WINDOW_WIDTH - 150, 20); // Centered in button
     }
 
     void updateUI() {
@@ -169,9 +175,6 @@ private:
     bool depthFirstSearch() {
         path.clear();
         std::vector<std::vector<bool>> visited(ROWS, std::vector<bool>(COLS, false));
-        std::vector<sf::Vector2i> pathStack;
-
-        // Using iterative DFS instead of recursive to avoid function declaration issues
         std::stack<sf::Vector2i> stack;
         std::vector<std::vector<sf::Vector2i>> parent(ROWS, std::vector<sf::Vector2i>(COLS, {-1, -1}));
 
@@ -441,13 +444,21 @@ public:
     }
 
     void render(sf::RenderWindow& window) {
-        window.clear(sf::Color::White);
+        window.clear(sf::Color(240, 240, 240)); // Light gray background
 
-        // Draw grid cells
+        // Draw the top bar background
+        sf::RectangleShape topBar(sf::Vector2f(WINDOW_WIDTH, TOP_BAR_HEIGHT));
+        topBar.setFillColor(sf::Color(220, 220, 220)); // Slightly darker gray for top bar
+        topBar.setPosition(0, 0);
+        window.draw(topBar);
+
+        // Draw grid cells with borders
         for (int y = 0; y < ROWS; ++y) {
             for (int x = 0; x < COLS; ++x) {
-                sf::RectangleShape cell(sf::Vector2f(TILE_SIZE - 1, TILE_SIZE - 1));
-                cell.setPosition(x * TILE_SIZE, y * TILE_SIZE + TOP_BAR_HEIGHT);
+                sf::RectangleShape cell(sf::Vector2f(TILE_SIZE - 2, TILE_SIZE - 2)); // Slightly smaller to show borders
+                cell.setPosition(x * TILE_SIZE + 1, y * TILE_SIZE + 1 + TOP_BAR_HEIGHT); // +1 for border
+                cell.setOutlineThickness(1); // Add border
+                cell.setOutlineColor(sf::Color::Black); // Black border
 
                 // Set cell color based on type
                 switch (grid[y][x]) {
@@ -470,21 +481,23 @@ public:
                 continue;
             }
 
-            sf::RectangleShape pathCell(sf::Vector2f(TILE_SIZE - 1, TILE_SIZE - 1));
-            pathCell.setPosition(p.x * TILE_SIZE, p.y * TILE_SIZE + TOP_BAR_HEIGHT);
-            pathCell.setFillColor(sf::Color::Blue);
+            sf::RectangleShape pathCell(sf::Vector2f(TILE_SIZE - 2, TILE_SIZE - 2)); // Slightly smaller to show borders
+            pathCell.setPosition(p.x * TILE_SIZE + 1, p.y * TILE_SIZE + 1 + TOP_BAR_HEIGHT); // +1 for border
+            pathCell.setFillColor(sf::Color(100, 149, 237)); // Cornflower blue for path
+            pathCell.setOutlineThickness(1); // Keep border
+            pathCell.setOutlineColor(sf::Color::Black); // Black border
             window.draw(pathCell);
         }
 
         // Draw UI elements
-        window.draw(stageText);
-        window.draw(timeText);
         window.draw(findPathButton);
         window.draw(findPathButtonText);
         window.draw(resetButton);
         window.draw(resetButtonText);
         window.draw(algorithmButton);
         window.draw(algorithmButtonText);
+        window.draw(stageText);
+        window.draw(timeText);
     }
 };
 
