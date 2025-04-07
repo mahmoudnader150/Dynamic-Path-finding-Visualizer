@@ -13,9 +13,10 @@
 const int ROWS = 16;
 const int COLS = 16;
 const int TILE_SIZE = 32;
-const int TOP_BAR_HEIGHT = 60; // Increased from 40 to 60
+const int TOP_BAR_HEIGHT = 60; // Top bar for buttons
+const int BOTTOM_BAR_HEIGHT = 40; // New bottom bar for text
 const int WINDOW_WIDTH = COLS * TILE_SIZE;
-const int WINDOW_HEIGHT = ROWS * TILE_SIZE + TOP_BAR_HEIGHT;
+const int WINDOW_HEIGHT = ROWS * TILE_SIZE + TOP_BAR_HEIGHT + BOTTOM_BAR_HEIGHT; // Adjusted for bottom bar
 
 enum CellType {
     EMPTY = 0,
@@ -70,17 +71,17 @@ private:
     }
 
     void setupUI() {
-        // Status text - moved to bottom left of window
+        // Status text - positioned in bottom bar
         stageText.setFont(font);
         stageText.setCharacterSize(18);
         stageText.setFillColor(sf::Color::Black);
-        stageText.setPosition(10, WINDOW_HEIGHT - 30); // Bottom left
+        stageText.setPosition(10, TOP_BAR_HEIGHT + ROWS * TILE_SIZE + 10); // In bottom bar
 
-        // Time text - moved to bottom right of window
+        // Time text - positioned in bottom bar
         timeText.setFont(font);
         timeText.setCharacterSize(16);
         timeText.setFillColor(sf::Color::Black);
-        timeText.setPosition(WINDOW_WIDTH - 250, WINDOW_HEIGHT - 30); // Bottom right
+        timeText.setPosition(WINDOW_WIDTH - 250, TOP_BAR_HEIGHT + ROWS * TILE_SIZE + 10); // In bottom bar
 
         // Find Path button
         findPathButton.setSize(sf::Vector2f(130, 40));
@@ -95,7 +96,7 @@ private:
         findPathButtonText.setFillColor(sf::Color::White);
         findPathButtonText.setPosition(30, 20); // Centered in button
 
-        // Reset button - moved to top middle
+        // Reset button
         resetButton.setSize(sf::Vector2f(110, 40));
         resetButton.setFillColor(sf::Color::Red);
         resetButton.setPosition(WINDOW_WIDTH / 2 - 55, 10); // Top middle
@@ -108,7 +109,7 @@ private:
         resetButtonText.setFillColor(sf::Color::White);
         resetButtonText.setPosition(WINDOW_WIDTH / 2 - 30, 20); // Centered in button
 
-        // Algorithm selection button - moved to top right
+        // Algorithm selection button
         algorithmButton.setSize(sf::Vector2f(150, 40));
         algorithmButton.setFillColor(sf::Color::Blue);
         algorithmButton.setPosition(WINDOW_WIDTH - 160, 10); // Top right
@@ -397,8 +398,8 @@ public:
             return;
         }
 
-        // Handle grid cell clicks
-        if (mouseY >= TOP_BAR_HEIGHT) {
+        // Handle grid cell clicks - only if within the grid area (not in top or bottom bars)
+        if (mouseY >= TOP_BAR_HEIGHT && mouseY < (TOP_BAR_HEIGHT + ROWS * TILE_SIZE)) {
             int gridX = mouseX / TILE_SIZE;
             int gridY = (mouseY - TOP_BAR_HEIGHT) / TILE_SIZE;
 
@@ -451,6 +452,12 @@ public:
         topBar.setFillColor(sf::Color(220, 220, 220)); // Slightly darker gray for top bar
         topBar.setPosition(0, 0);
         window.draw(topBar);
+
+        // Draw the bottom bar background
+        sf::RectangleShape bottomBar(sf::Vector2f(WINDOW_WIDTH, BOTTOM_BAR_HEIGHT));
+        bottomBar.setFillColor(sf::Color(220, 220, 220)); // Same color as top bar
+        bottomBar.setPosition(0, TOP_BAR_HEIGHT + ROWS * TILE_SIZE);
+        window.draw(bottomBar);
 
         // Draw grid cells with borders
         for (int y = 0; y < ROWS; ++y) {
